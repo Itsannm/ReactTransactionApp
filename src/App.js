@@ -15,7 +15,7 @@ const App = () => {
   }, []);
 
   const fetchData = () => {
-    fetch("http://localhost:3000/transactions")
+    fetch("https://bankfi-react-com.onrender.com")
       .then((response) => response.json())
       .then((data) => setTransactions(data))
       .catch((error) => console.error("Error fetching data:", error));
