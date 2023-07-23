@@ -1,39 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React from "react";
 
-const TransactionTable = () => {
-  const [transactions, setTransactions] = useState([]);
+const TransactionTable = ({ transactions, searchTerm, sortOption, onDelete }) => {
+  // Filter transactions based on the search term
+  const filteredTransactions = transactions.filter((transaction) =>
+    transaction.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-  useEffect(() => {
-    fetch('http://localhost:3000/transactions')
-      .then((response) => response.json())
-      .then((data) => setTransactions(data))
-      .catch((error) => console.error('Error fetching transactions:', error));
-  }, []);
+  // Sort transactions based on the selected option
+  const sortedTransactions = sortOption
+    ? [...filteredTransactions].sort((a, b) =>
+        a[sortOption].localeCompare(b[sortOption])
+      )
+    : filteredTransactions;
 
   return (
-    <div>
-      <h2>Transaction Table</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Amount</th>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Delete</th> {/* Add the Delete column */}
+        </tr>
+      </thead>
+      <tbody>
+        {sortedTransactions.map((transaction) => (
+          <tr key={transaction.id}>
+            <td>{transaction.category}</td>
+            <td>{transaction.description}</td>
+            <td>${transaction.amount}</td>
+            <td>{new Date(transaction.date).toLocaleDateString()}</td>
+            <td>
+              {/* Add a button to delete the transaction */}
+              <button onClick={() => onDelete(transaction.id)}>Delete</button>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {transactions.map((transaction) => (
-            <tr key={transaction.id}>
-              <td>{transaction.date}</td>
-              <td>{transaction.description}</td>
-              <td>{transaction.category}</td>
-              <td>${transaction.amount}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
   );
 };
 
