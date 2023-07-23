@@ -4,7 +4,7 @@ const TransactionTable = () => {
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8001/transactions')
+    fetch('http://localhost:3000/transactions')
       .then((response) => response.json())
       .then((data) => setTransactions(data))
       .catch((error) => console.error('Error fetching transactions:', error));
