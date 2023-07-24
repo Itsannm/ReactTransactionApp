@@ -15,7 +15,7 @@ const App = () => {
   }, []);
 
   const fetchData = () => {
-    fetch("https://bankfi-react-com.onrender.com")
+    fetch("http://localhost:8000/transactions")
       .then((response) => response.json())
       .then((data) => setTransactions(data))
       .catch((error) => console.error("Error fetching data:", error));
@@ -40,7 +40,7 @@ const App = () => {
         transactions={transactions}
         searchTerm={searchTerm}
         sortOption={sortOption}
-        onDelete={handleDeleteTransaction} 
+        onDelete={handleDeleteTransaction} // Pass the handleDeleteTransaction function to TransactionTable
       />
     </div>
   );
