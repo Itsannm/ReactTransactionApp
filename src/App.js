@@ -40,7 +40,7 @@ const App = () => {
         transactions={transactions}
         searchTerm={searchTerm}
         sortOption={sortOption}
-        onDelete={handleDeleteTransaction} // Pass the handleDeleteTransaction function to TransactionTable
+        onDelete={handleDeleteTransaction} 
       />
     </div>
   );

@@ -21,7 +21,7 @@ const TransactionTable = ({ transactions, searchTerm, sortOption, onDelete }) =>
           <th>Description</th>
           <th>Amount</th>
           <th>Date</th>
-          <th>Delete</th> {/* Add the Delete column */}
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -32,7 +32,6 @@ const TransactionTable = ({ transactions, searchTerm, sortOption, onDelete }) =>
             <td>${transaction.amount}</td>
             <td>{new Date(transaction.date).toLocaleDateString()}</td>
             <td>
-              {/* Add a button to delete the transaction */}
               <button onClick={() => onDelete(transaction.id)}>Delete</button>
             </td>
           </tr>
