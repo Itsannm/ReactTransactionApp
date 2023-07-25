@@ -1,5 +1,3 @@
-Sure! Here's a sample README.md file for your React app:
-
 # Bank of FlatIron - Transaction Manager
 
 Bank of FlatIron is a simple React application that allows users to manage their bank transactions. Users can view their recent bank transactions in a table, add new transactions, search for transactions by description, and sort transactions by category or description. Additionally, users can delete transactions they no longer need.
